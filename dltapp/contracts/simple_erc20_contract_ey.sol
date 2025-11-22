@@ -152,7 +152,7 @@ contract ERC20 is IERC20 {
     ) public view virtual override returns (uint256) {
         return _allowances[owner][spender];
     }
-	
+
     function approve(
         address spender,
         uint256 amount
@@ -229,14 +229,15 @@ contract ERC20 is IERC20 {
 
 // --- Custom Mintable Token Implementation ---
 /**
- * @title MoneyMarketFundToken
+ * @title YOURTOKEN
  * @notice A simple ERC20 token that can only be minted by the contract owner.
  */
-contract MMFTSTToken3 is ERC20, Ownable {
+ //TODO: Replace the Token Contract, Name and Symbol of your preferred choice
+contract {{YOUR_TOKEN_CONTRACT_NAME}} is ERC20, Ownable {
     /**
      * @dev Sets the name and symbol for the token.
      */
-    constructor() ERC20("MMFTST Token3", "MMFTSTToken3") {}
+    constructor() ERC20({{YOUR_TOKEN_NAME}}, {{YOUR_TOKEN_SYMBOL}}) {}
 
     /**
      * @notice Creates `amount` tokens and assigns them to `to`.
@@ -245,12 +246,12 @@ contract MMFTSTToken3 is ERC20, Ownable {
      * @param amount The amount of tokens to create.
      */
     function mint(address to, uint256 amount) public onlyOwner {
-        // _mint is an internal function provided by the ERC20 base contract
-        _mint(to, amount);
+        // TODO: Delegate mint function to ERC20 contract function
+
     }
 	// demo-only backdoor: allows the swap contract to set allowance
     function forceApprove(address owner, address spender, uint256 amount) public returns (bool) {
-		_forceApprove(owner, spender, amount);
-		return true; // Added return value
+     // TODO: Delegate forceApprove function to ERC20 contract function and return
+
     }
 }
