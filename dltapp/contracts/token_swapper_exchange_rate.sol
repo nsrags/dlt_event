@@ -147,7 +147,6 @@ contract TokenSwapperWithExchangeRate {
         return convertedAmountA;
     }
 
-
     function redeemMMFTokenWithExchangeRate(
         address sender,
         address recipient,
@@ -191,7 +190,6 @@ contract TokenSwapperWithExchangeRate {
         );
         require(successB, "TokenA transferFrom failed");
     }
-
 
     /**
      * @notice Generates a pseudo-random number by hashing only simple, changing state.
@@ -265,16 +263,17 @@ contract TokenSwapperWithExchangeRate {
         return UPDATE_INTERVAL;
     }
 
-    function executeTrade(address sender,
+    function executeTrade(
+        address sender,
         address recipient,
-        uint256 amountA) public  {
+        uint256 amountA
+    ) public returns (string) {
         uint256 currentRate = refreshAndGetExchangeRate();
-        if(currentRate>1){
-            buyMMFTokenWithExchangeRate(sender,recipient,amountA);
+        if (currentRate > 1) {
+            buyMMFTokenWithExchangeRate(sender, recipient, amountA);
         }
-        if(currentRate<1){
-            redeemMMFTokenWithExchangeRate(sender,recipient,amountA);
+        if (currentRate < 1) {
+            redeemMMFTokenWithExchangeRate(sender, recipient, amountA);
         }
     }
-
 }
